@@ -18,6 +18,13 @@
 #   > direnv --version
 #   2.21.2
 
+# python
+alias pythonSetVenv='python3 -m venv .venv'
+alias pythonActivateVenv='source .venv/bin/activate'
+alias pythonDeactivateVenv='deactivate'
+alias pythonFreezeVenv='python3 -m pip freeze > requirements.txt'
+alias pythonInstallRequirements='python3 -m pip install -r requirements.txt'
+
 # to access EC2 instances
 alias ssh_amzn='ssh -l ec2-user -i ~/.ssh/id_rsa'
 alias scp_amzn='scp -l ec2-user -i ~/.ssh/id_rsa'
@@ -34,46 +41,24 @@ alias trrplanRegion='terraform plan -var region=$AWS_DEFAULT_REGION'
 alias trrapplyRegion='terraform apply -var region=$AWS_DEFAULT_REGION'
 alias trrdestroyRegion='terraform destroy -var region=$AWS_DEFAULT_REGION'
 
+#AWS CDK
+alias cdkInitPython='cdk init sample-app --language python'
+alias cdkSynth='cdk synth'
+alias cdkBootstrap='cdk bootstrap'
+alias cdkDeploy='cdk deploy'
+alias cdkDiff='cdk diff'
+alias cdkList='cdk list'
+
 # to use github
 alias gitinit="git init"
 alias gitadd="git add ."
 alias gitcommit="git commit -m 'commiting at [ $(date) ]'"
 alias gitpush="git push origin main"
+alias gitreset="git reset --soft HEAD^^"
 
+# etc
 alias refreshpath='hash -r'
 alias whereami='curl http://inet-ip.info/'
 
-# to use aws-vault
-export AWS_VAULT_BACKEND=file
-export AWS_SESSION_TOKEN_TTL=3h
-
-alias avadd="aws-vault add"
-alias avlist="aws-vault list"
-#alias avlogin="aws-vault login"
-#alias avexec="aws-vault exec"
-alias avlogin="unset AWS_VAULT; aws-vault login"
-alias avexec="unset AWS_VAULT; aws-vault exec"
-alias avdebug="aws-vault --debug ls"
-alias avclear="aws-vault clear;\
-    unset AWS_ACCESS_KEY_ID;\
-    unset AWS_SECRET_ACCESS_KEY;\
-    unset AWS_SESSION_TOKEN;"
-
-alias direnvAdd="cat >> .envrc ; direnv edit . ; direnv allow"
-alias direnvOverwrie="cat > .envrc ; direnv edit . ; direnv allow"
-
-alias sshEchoKeygen='echo ssh-keygen -t rsa \$EMAIL_GIT -f \$PRIVATEKEY'
-alias sshEchoTestGit='echo ssh -T git@github.com.main'
-
-alias sshAgentAdd='ssh-add -D > /dev/null 2>&1; \
-     kill -0 ${SSH_AGENT_PID} > /dev/null 2>&1; \
-     if [ $? -ne 0 ]; then eval `ssh-agent`; fi; \
-     ssh-add'
-
-cat <<EOL
-# type the following to start aws!:
-sshAgentAdd
-ave managing_id
-EOL
 
 echo "# finishing : setup_for_builder.bash"
