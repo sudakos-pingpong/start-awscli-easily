@@ -59,6 +59,7 @@ alias gitreset="git reset --soft HEAD^^"
 # etc
 alias refreshpath='hash -r'
 alias whereami='curl http://inet-ip.info/'
+alias dateText='date +%Y%m%d_%H%M%S'
 
 
 echo "# finishing : setup_for_builder.bash"
