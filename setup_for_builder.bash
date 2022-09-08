@@ -61,5 +61,25 @@ alias refreshpath='hash -r'
 alias whereami='curl http://inet-ip.info/'
 alias dateText='date +%Y%m%d_%H%M%S'
 
+#rbenv
+
+export PATH="/home/suda8/.rbenv/shims:${PATH}"
+export RBENV_SHELL=bash
+source '/home/suda8/.rbenv/libexec/../completions/rbenv.bash'
+command rbenv rehash 2>/dev/null
+rbenv() {
+  local command
+  command="${1:-}"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval "$(rbenv "sh-$command" "$@")";;
+  *)
+    command rbenv "$command" "$@";;
+  esac
+}
 
 echo "# finishing : setup_for_builder.bash"

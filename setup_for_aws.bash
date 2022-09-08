@@ -170,7 +170,7 @@ alias awsEchoCfnCreateStackByFile='\
  echo "export CfnFile=${CfnFile}";\
  echo "export ExecRole=${ExecRole}";\
  echo "export StackName=${StackName}";\
- echo "export ParameterSets=${ParameterSets}";\
+ echo "export ParameterSets=${ParameterSets}";echo "## use quotation if write multiple lines ##";\
  echo "aws cloudformation create-stack\
   --stack-name \${StackName} --role-arn \${ExecRole} --template-body file://\${CfnFile}\
   --parameters \${ParameterSets}";\
@@ -262,6 +262,9 @@ alias awsListSQSQueues="aws sqs list-queues \
 ### Operations of Control Tower and Organizations
 
 alias awsOrgListAccounts="aws organizations list-accounts | jq -r '.Accounts[] | [.Id, .Email] | @csv'"
+alias awsOrgListDelegatedConfig="aws organizations list-delegated-administrators --service-principal config.amazonaws.com"
+alias awsOrgListDelegatedConfigAggr="aws organizations list-delegated-administrators --service-principal config-multiaccountsetup.amazonaws.com"
+
 
 # alias awsOrgConfig
 #aws organizations enable-aws-service-access --service-principal config.amazonaws.com
