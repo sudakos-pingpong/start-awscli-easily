@@ -55,15 +55,25 @@ alias gitadd="git add ."
 alias gitcommit="git commit -m 'commiting at [ $(date) ]'"
 alias gitpush="git push origin main"
 alias gitreset="git reset --soft HEAD^^"
+alias gitpull="git pull origin main"
 
 # etc
 alias refreshpath='hash -r'
 alias whereami='curl http://inet-ip.info/'
 alias dateText='date +%Y%m%d_%H%M%S'
+alias yqY="yq -y . "
 
 #rbenv
-
 export PATH="/home/suda8/.rbenv/shims:${PATH}"
+
+# eb cli
+export PATH="/home/suda8/.ebcli-virtual-env/executables:$PATH"
+
+export PATH="/usr/local/sbin:/usr/sbin:/sbin:$PATH"
+
+# cfn-guard
+export PATH="/home/suda8/.guard/bin:$PATH"
+
 export RBENV_SHELL=bash
 source '/home/suda8/.rbenv/libexec/../completions/rbenv.bash'
 command rbenv rehash 2>/dev/null

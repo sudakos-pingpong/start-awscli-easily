@@ -250,6 +250,16 @@ alias awsShowS3BucketEncryption="aws s3api get-bucket-encryption"
 alias awsListS3Objects="aws s3api list-objects"
 alias awsEchoS3DeleteBucket="echo 'export bucketName=';echo 'aws s3 rm s3://\$bucketName --recursive';echo 'aws s3 rb s3://\$bucketName --force'"
 
+alias awsEchoS3ShareFile="echo '
+ export SharingFile=${SharingFile}
+ export BucketName=${BucketName}
+ export ObjectPath=${BucketName}/${SharingFile} 
+ export ExperingSec=$((60*60*24*7))
+ aws s3 mv ${SharingFile} ${BucketName}
+ aws s3 presign ${ObjectPath} --expires-in ${ExperingSec}
+ '"
+
+
 ### SNS
 alias awsListSNSTopics="aws sns list-topics \
     | jq -r \".Topics[] | .TopicArn \" \
