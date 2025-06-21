@@ -1,0 +1,64 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "sts",
+            "Effect": "Allow",
+            "Action": [
+                "sts:GetSessionToken"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "MFA",
+            "Effect": "Allow",
+            "Action": [
+                "iam:ListMFADevices",
+                "iam:EnableMFADevice",
+                "iam:DeleteVirtualMFADevice",
+                "iam:ResyncMFADevice",
+                "iam:DeactivateMFADevice"              
+            ],
+            "Resource": [
+                "arn:aws:iam::*:user/${aws:username}",
+                "arn:aws:iam::*:mfa/*"
+            ]
+        },
+        {
+            "Sid": "CreateVirtualMFA",
+            "Effect": "Allow",
+            "Action": [
+                "iam:CreateVirtualMFADevice"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "List",
+            "Effect": "Allow",
+            "Action": [
+                "iam:ListUsers",
+                "iam:ListVirtualMFADevices"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "BlockMostAccessUnlessSignedInWithMFA",
+            "Effect": "Deny",
+            "NotAction": [
+                "iam:CreateVirtualMFADevice",
+                "iam:ListVirtualMFADevices",
+                "iam:EnableMFADevice",
+                "iam:ListUsers",
+                "iam:ListMFADevices",
+                "sts:GetSessionToken"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "BoolIfExists": {
+                    "aws:MultiFactorAuthPresent": "false",
+                    "aws:ViaAWSService": "false"
+                }
+            }
+        }
+    ]
+}
