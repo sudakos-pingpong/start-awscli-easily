@@ -18,6 +18,22 @@
 #   > direnv --version
 #   2.21.2
 
+#aws-vault
+# to use aws-vault
+export AWS_VAULT_BACKEND=file
+export AWS_SESSION_TOKEN_TTL=3h
+
+alias avadd="aws-vault add"
+alias avlist="aws-vault list"
+alias avlogin="unset AWS_VAULT; aws-vault login"
+alias avloginStdout="unset AWS_VAULT; aws-vault login --stdout"
+alias avexec="unset AWS_VAULT; aws-vault exec"
+alias avdebug="aws-vault --debug ls"
+alias avclear="aws-vault clear;\
+    unset AWS_ACCESS_KEY_ID;\
+    unset AWS_SECRET_ACCESS_KEY;\
+    unset AWS_SESSION_TOKEN;"
+    
 # python
 alias pythonSetVenv='python3 -m venv .venv'
 alias pythonActivateVenv='source .venv/bin/activate'
