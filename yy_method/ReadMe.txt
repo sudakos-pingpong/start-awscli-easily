@@ -43,3 +43,24 @@ export AWS_VAULT_FILE_PASSPHRASE=
     export AWS_VAULT_PASS_PREFIX=aws-vault
     export AWS_SESSION_TOKEN_TTL=3h
 
+---
+初期の設定
+
+○ awsvault
+	• インストール
+		○ brew install aws-vault
+	• 設定
+		○ WSL特有の環境で苦戦するケースがある模様　※エラー要因かと思ったけど、関係無し
+https://zenn.dev/yumechi/articles/29e94f03b0b1fb2ed530
+```
+export AWS_VAULT_BACKEND=file
+export AWS_VAULT_PASS_PREFIX=aws-vault
+export AWS_SESSION_TOKEN_TTL=3h
+#eval "$(aws-vault --completion-script-zsh)"
+```
+
+		○ あとは共通
+https://dev.classmethod.jp/articles/aws-vault/
+			§ aws-vault add managing_id
+			§ テスト（例）
+$ aws-vault exec managing_id -- aws iam list-users
