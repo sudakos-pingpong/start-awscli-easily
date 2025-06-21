@@ -1,0 +1,6 @@
+
+[profile managing_id]
+role_arn=arn:aws:iam::<ACCOUNT-ID>:role/first-admin-role
+source_proflie=
+mfa_serial=arn:aws:iam::<ACCOUNT-ID>:mfa/jump-user
+region=ap-northeast-1

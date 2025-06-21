@@ -1,0 +1,7 @@
+#sample
+
+aws iam create-policy  --policy-name PolicyOfUserToAssumeOnly --policy-document file://PolicyOfUserToAssumeOnly.json 
+
+aws iam create-user --user-name jump-user
+	
+aws iam attach-user-policy --user-name jump-user --policy-arn "arn:aws:iam::<JumpAccount ID>:policy/PolicyOfUserToAssumeOnly"
